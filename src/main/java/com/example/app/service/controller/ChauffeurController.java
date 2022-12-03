@@ -1,6 +1,5 @@
 package com.example.app.service.controller;
 
-import com.example.app.persistance.dao.ChauffeurRepository;
 import com.example.app.persistance.entities.Chauffeur;
 import com.example.app.service.interfaces.IChauffeur;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,39 +13,37 @@ import java.util.List;
 
 @RestController
 @Transactional
-@RequestMapping("/api")
+@RequestMapping(value = "/api/chauffeurs",
+        consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
 public class ChauffeurController {
-    @Autowired
-    ChauffeurRepository chauffeurRepository;
 
     @Autowired
     IChauffeur chauffeurService;
 
-    @PostMapping(path="/chauffeurs",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping()
     public ResponseEntity<Chauffeur> createChauffeur(@RequestBody Chauffeur chauffeur) {
         chauffeurService.saveChauffeur(chauffeur);
         return new ResponseEntity<Chauffeur>(chauffeur, HttpStatus.CREATED );
     }
 
-    @GetMapping("/chauffeurs")
+    @GetMapping()
     public List<Chauffeur> getAllChauffeurs() {
-        return chauffeurRepository.findAll();
+        return chauffeurService.getAll();
     }
 
-    @GetMapping("/chauffeurs/{id}")
+    @GetMapping("/{id}")
     public Chauffeur getChauffeurById(@PathVariable Long id) {
         return chauffeurService.getChauffeurById(id);
     }
 
-    @PutMapping("/chauffeurs/{id}")
+    @PutMapping("/{id}")
     public Chauffeur updateChauffeur(@PathVariable Long id, @RequestBody Chauffeur chauffeur){
         return chauffeurService.updateChauffeur(id,chauffeur);
     }
 
 
-    @DeleteMapping("/chauffeurs/{id}")
+    @DeleteMapping("/{id}")
     public void deleteChauffeurById(@PathVariable Long id){
         chauffeurService.deleteChauffeur(id);
     }
