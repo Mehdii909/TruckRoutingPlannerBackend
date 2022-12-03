@@ -1,19 +1,29 @@
 package com.example.app.persistance.entities;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
-import javax.persistence.*;
-import java.io.Serializable;
-
+@Getter
+@Setter
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Chauffeur implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,5 +45,11 @@ public class Chauffeur implements Serializable {
 
     @Column
     private String adresse;
+
+    @OneToMany(mappedBy = "chauffeur")
+    private List<Mission> listMission;
+
+    @OneToMany(mappedBy = "chauffeur")
+    private List<FicheDePaie> listFicheDePaie;
 
 }

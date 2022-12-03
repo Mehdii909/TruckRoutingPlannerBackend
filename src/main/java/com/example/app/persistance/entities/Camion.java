@@ -1,6 +1,14 @@
 package com.example.app.persistance.entities;
 
-import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,14 +16,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-
-
+@Getter
+@Setter
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Camion implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,6 +37,13 @@ public class Camion implements Serializable {
     @Column
     private Float kilometrage;
 
-    // relation oneToMany with mission
-    // relation manyToOne with les deux type d'intervention
+    @OneToMany(mappedBy = "camion")
+    private List<InterventionCuratif> listInterventionCuratif;
+
+    @OneToMany(mappedBy = "camion")
+    private List<InterventionPreventif> listInterventionPreventif;
+
+    @OneToMany(mappedBy = "camion")
+    private List<Mission> listMission;
+
 }
