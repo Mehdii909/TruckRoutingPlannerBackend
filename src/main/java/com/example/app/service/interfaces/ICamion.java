@@ -4,7 +4,9 @@ import com.example.app.persistance.entities.Camion;
 
 public interface ICamion {
 
-    Camion saveCamion(Camion camion);
-    Camion getCamion(Long id);
+    void saveCamion(Camion camion);
+    Camion getCamionById(Long id);
+    void deleteCamion(Long id);
+    Camion updateCamion(Long id, Camion camion);
 
 }

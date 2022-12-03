@@ -4,8 +4,10 @@ import com.example.app.persistance.entities.Camion;
 import com.example.app.service.interfaces.ICamion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
@@ -23,14 +25,12 @@ public class CamionController {
     @Autowired
     ICamion camionService;
 
-    @PostMapping("/camions")
-    public ResponseEntity<Void> createCamion(@RequestBody Camion camion) {
-        Camion CreatedCamion = camionService.saveCamion(camion);
-
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(CreatedCamion.getId()).toUri();
-
-        return new ResponseEntity<Void>( HttpStatus.OK );
+    @PostMapping(path="/camions",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Camion> createCamion(@RequestBody Camion camion) {
+        camionService.saveCamion(camion);
+        return new ResponseEntity<Camion>(camion, HttpStatus.CREATED );
     }
 
     @GetMapping("/camions")
@@ -38,13 +38,27 @@ public class CamionController {
         return camionRepository.findAll();
     }
 
-    @GetMapping("/camion/{id}")
+    @GetMapping("/camions/{id}")
     public Camion getCamionById(@PathVariable Long id) {
-        return camionService.getCamion(id);
+        return camionService.getCamionById(id);
+    }
+
+    @PutMapping("/camions/{id}")
+    public Camion updateCamion(@PathVariable Long id, @RequestBody Camion camion){
+        return camionService.updateCamion(id,camion);
+    }
+
+
+    @DeleteMapping("/camions/{id}")
+        public void deleteCamionById(@PathVariable Long id){
+          camionService.deleteCamion(id);
+        }
+
     }
 
 
 
 
 
-}
+
+
