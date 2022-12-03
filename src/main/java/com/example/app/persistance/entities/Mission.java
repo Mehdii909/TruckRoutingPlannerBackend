@@ -49,7 +49,7 @@ public class Mission implements Serializable {
     private Float prixHT;
 
     @Column
-    private Float prcentageTVA;
+    private Float pourcentageTVA;
 
     @Column
     private Float prixTotale;
