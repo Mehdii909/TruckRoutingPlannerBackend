@@ -24,10 +24,12 @@ public class CamionService implements ICamion {
         return  camionRepository.findById(id).get();
     }
 
+    @Override
     public void deleteCamion(Long id){
         camionRepository.deleteById(id);
     }
 
+    @Override
     public Camion updateCamion(Long id, Camion camion){
         Camion camiondb = camionRepository.findById(id).get();
         camiondb.setImmatriculation(camion.getImmatriculation());
