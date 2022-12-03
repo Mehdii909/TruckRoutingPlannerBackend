@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @Transactional
-@RequestMapping(value = "/api/interventionCuratifs", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/interventionCuratifs", produces = MediaType.APPLICATION_JSON_VALUE)
 public class InterventionCuratifController {
 
     @Autowired

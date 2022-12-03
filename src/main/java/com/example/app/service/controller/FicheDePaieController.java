@@ -14,7 +14,6 @@ import java.util.List;
 @RestController
 @Transactional
 @RequestMapping(value = "/api/ficheDePaies",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE)
 public class FicheDePaieController {
 
