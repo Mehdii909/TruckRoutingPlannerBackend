@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @Transactional
-@RequestMapping(value = "/api/factures", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/factures", produces = MediaType.APPLICATION_JSON_VALUE)
 public class FactureController {
 
 

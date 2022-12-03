@@ -1,9 +1,13 @@
 package com.example.app.utils.exceptions;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 import java.util.Date;
 
+@Data
+@NoArgsConstructor
 public class ErrorResponse {
 
 
