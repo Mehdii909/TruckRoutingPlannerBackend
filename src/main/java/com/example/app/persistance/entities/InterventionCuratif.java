@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = " interventionCuratif")
+@Table(name = "interventionCuratif")
 public class InterventionCuratif implements Serializable {
 
     @Id
