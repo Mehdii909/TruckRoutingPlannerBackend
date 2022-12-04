@@ -7,49 +7,42 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import java.net.URI;
+
 import java.util.List;
-import com.example.app.persistance.dao.CamionRepository;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @Transactional
-@RequestMapping("/api")
+@RequestMapping(value = "/api/camions" , produces = MediaType.APPLICATION_JSON_VALUE)
 public class CamionController {
 
-    @Autowired
-    CamionRepository camionRepository;
 
     @Autowired
     ICamion camionService;
 
-    @PostMapping(path="/camions",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping()
     public ResponseEntity<Camion> createCamion(@RequestBody Camion camion) {
         camionService.saveCamion(camion);
         return new ResponseEntity<Camion>(camion, HttpStatus.CREATED );
     }
 
-    @GetMapping("/camions")
+    @GetMapping
     public List<Camion> getAllCamions() {
-        return camionRepository.findAll();
+        return camionService.getAll();
     }
 
-    @GetMapping("/camions/{id}")
+    @GetMapping("/{id}")
     public Camion getCamionById(@PathVariable Long id) {
         return camionService.getCamionById(id);
     }
 
-    @PutMapping("/camions/{id}")
+    @PutMapping("/{id}")
     public Camion updateCamion(@PathVariable Long id, @RequestBody Camion camion){
         return camionService.updateCamion(id,camion);
     }
 
 
-    @DeleteMapping("/camions/{id}")
+    @DeleteMapping("/{id}")
         public void deleteCamionById(@PathVariable Long id){
           camionService.deleteCamion(id);
         }

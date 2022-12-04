@@ -1,6 +1,5 @@
 package com.example.app.service.controller;
 
-import com.example.app.persistance.dao.InterventionPreventifRepository;
 import com.example.app.persistance.entities.InterventionPreventif;
 import com.example.app.service.interfaces.IInterventionPreventif;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,40 +13,37 @@ import java.util.List;
 
 @RestController
 @Transactional
-@RequestMapping("/api")
+@RequestMapping(value = "/api/interventionPreventifs",
+        produces = MediaType.APPLICATION_JSON_VALUE)
 public class InterventionPreventifController {
 
-    @Autowired
-    InterventionPreventifRepository interventionPreventifRepository;
 
     @Autowired
     IInterventionPreventif interventionPreventifService;
 
-    @PostMapping(path="/interventionPreventifs",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     public ResponseEntity<InterventionPreventif> createInterventionPreventif(@RequestBody InterventionPreventif interventionPreventif) {
         interventionPreventifService.saveInterventionPreventif(interventionPreventif);
         return new ResponseEntity<InterventionPreventif>(interventionPreventif, HttpStatus.CREATED );
     }
 
-    @GetMapping("/interventionPreventifs")
+    @GetMapping
     public List<InterventionPreventif> getAllInterventionPreventifs() {
-        return interventionPreventifRepository.findAll();
+        return interventionPreventifService.getAll();
     }
 
-    @GetMapping("/interventionPreventifs/{id}")
+    @GetMapping("/{id}")
     public InterventionPreventif getInterventionPreventifById(@PathVariable Long id) {
         return interventionPreventifService.getInterventionPreventifById(id);
     }
 
-    @PutMapping("/interventionPreventifs/{id}")
+    @PutMapping("/{id}")
     public InterventionPreventif updateInterventionPreventif(@PathVariable Long id, @RequestBody InterventionPreventif interventionPreventif){
         return interventionPreventifService.updateInterventionPreventif(id,interventionPreventif);
     }
 
 
-    @DeleteMapping("/interventionPreventifs/{id}")
+    @DeleteMapping("/{id}")
     public void deleteInterventionPreventifById(@PathVariable Long id){
         interventionPreventifService.deleteInterventionPreventif(id);
     }
