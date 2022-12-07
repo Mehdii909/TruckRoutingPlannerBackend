@@ -24,6 +24,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Camion implements Serializable {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -48,6 +48,7 @@ public class MissionService implements IMission {
     @Override
     public Mission updateMission(Long id, Mission mission) {
         Mission missiondb = missionRepository.findById(id).orElseThrow(() -> new MyNotFoundException(ErrorStrings.MISSION_NOT_FOUND));
+
         try {
             missiondb.setDateMission(mission.getDateMission());
             missiondb.setDescription(mission.getDescription());
