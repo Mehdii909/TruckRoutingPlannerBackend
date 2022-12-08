@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -44,6 +46,7 @@ public class Camion implements Serializable {
     private List<InterventionPreventif> listInterventionPreventif;
 
     @OneToMany(mappedBy = "camion")
+    @JsonIgnoreProperties(value = { "chauffeur", "camion", "client"  }, allowSetters = true)
     private List<Mission> listMission;
 
 }

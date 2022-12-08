@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,17 +20,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.app.persistance.entities.Mission;
 import com.example.app.service.interfaces.IMission;
 
+@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @Transactional
 @RequestMapping(value = "/api/missions", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MissionController {
 
     @Autowired
+
     IMission missionService;
 
     @PostMapping
     public ResponseEntity<Mission> createMission(@RequestBody Mission mission) {
+
         missionService.saveMission(mission);
+
         return new ResponseEntity<Mission>(mission, HttpStatus.CREATED);
     }
 
