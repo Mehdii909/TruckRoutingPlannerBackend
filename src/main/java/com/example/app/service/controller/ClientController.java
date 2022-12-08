@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+@CrossOrigin(origins = "http://localhost:4200")
 
 @RestController
 @Transactional
@@ -18,7 +19,7 @@ public class ClientController {
 
     @Autowired
     IClient clientService;
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping()
     public ResponseEntity<Client> createClient(@RequestBody Client client) {
         clientService.saveClient(client);

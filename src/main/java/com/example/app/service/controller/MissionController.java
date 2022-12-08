@@ -1,7 +1,7 @@
 package com.example.app.service.controller;
 
-import com.example.app.persistance.entities.Mission;
-import com.example.app.service.interfaces.IMission;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import com.example.app.persistance.entities.Mission;
+import com.example.app.service.interfaces.IMission;
+@CrossOrigin(origins = "http://localhost:4200")
 
 @RestController
 @Transactional
@@ -19,7 +21,7 @@ public class MissionController {
     @Autowired
     IMission missionService;
 
-    @PostMapping(path = "/missions", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     public ResponseEntity<Mission> createMission(@RequestBody Mission mission) {
         missionService.saveMission(mission);
         return new ResponseEntity<Mission>(mission, HttpStatus.CREATED);
