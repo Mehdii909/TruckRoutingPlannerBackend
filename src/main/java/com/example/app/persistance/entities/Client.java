@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -44,5 +45,8 @@ public class Client implements Serializable {
     @Column
     private String address;
 
+   /* @OneToMany(mappedBy = "client")
+    @JsonIgnoreProperties(value = { "listMission" }, allowSetters = true)    
+    private List<Mission> listMission;*/
 
 }

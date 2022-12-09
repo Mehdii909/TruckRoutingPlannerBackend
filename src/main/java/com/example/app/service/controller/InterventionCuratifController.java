@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import javax.persistence.Table;
+@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @Transactional
 @RequestMapping(value = "/api/interventionCuratifs", produces = MediaType.APPLICATION_JSON_VALUE)
