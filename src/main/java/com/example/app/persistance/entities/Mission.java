@@ -62,17 +62,17 @@ public class Mission  implements Serializable{
 
     @ManyToOne(cascade = CascadeType.MERGE,fetch=FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  
-    @JoinColumn(name = "idCamion")
+    @JoinColumn(name = "id_camion")
     private Camion camion;
 
     @ManyToOne(cascade = CascadeType.MERGE,fetch=FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @JoinColumn(name = "idChauffeur")
+    @JoinColumn(name = "id_chauffeur")
     private Chauffeur chauffeur;
 
     @ManyToOne(cascade = CascadeType.MERGE,fetch=FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @JoinColumn(name = "idClient", referencedColumnName = "id")
+    @JoinColumn(name = "id_client")
     private Client client;
 
 }

@@ -44,10 +44,9 @@ public class Client implements Serializable {
 
     @Column
     private String address;
-
-    @OneToMany(mappedBy = "client")
-    @JsonIgnoreProperties(value = { "chauffeur", "camion", "client"  }, allowSetters = true)
-    private List<Mission> listMission;
-
+    
+   /* @OneToMany(mappedBy = "client")
+    @JsonIgnoreProperties(value = { "listMission" }, allowSetters = true)    
+    private List<Mission> listMission;*/
     
 }
